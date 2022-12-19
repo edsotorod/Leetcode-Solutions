@@ -13,8 +13,6 @@ def smallerNumbersThanCurrent(nums: list[int]) -> list[int]:
         
   for num in nums:
     solutionList.append(numDict[num])
-
-  print("Dictionary", numDict)
   
   return solutionList
 
@@ -23,3 +21,15 @@ print(smallerNumbersThanCurrent([6,5,4,8]))
 print(smallerNumbersThanCurrent([7,7,7,7]))
 print(smallerNumbersThanCurrent([7]))
 print(smallerNumbersThanCurrent([]))
+
+'''
+# Second Solution: Improved performance
+def smallerNumbersThanCurrent(nums: list[int]) -> list[int]:
+  solutionList = []
+  sortList = sorted(nums)[:]
+
+  for num in nums:
+    solutionList.append(sortList.index(num))
+  
+  return solutionList
+'''
