@@ -8,35 +8,40 @@ class ListNode:
 # 1st Solution: Time Complexity O(n + n/2) 101ms, Space Complexity O(n)
 '''
 def reorderList(head: None | ListNode) -> None:
-    """
-      Do not return anything, modify head in-place instead.
-    """
-    nodeDict = {}
-    count = 0
-    itr = head
+  """
+    Do not return anything, modify head in-place instead.
+  """
+  nodeDict = {}
+  count = 0
+  itr = head
 
-    while itr:
-      nodeDict[count] = itr
-      count += 1
-      itr = itr.next
+  while itr:
+    nodeDict[count] = itr
+    count += 1
+    itr = itr.next
 
-    if count == 2:
-      return
+  if count == 2:
+    return
 
-    itr = head
-    if count > 2:
-      itr.next = nodeDict[count-1]
-      itr = itr.next
+  itr = head
+  if count > 2:
+    itr.next = nodeDict[count-1]
+    itr = itr.next
 
+  count -= 1
+  index = 1
+
+  while index < count:
+    itr.next = nodeDict[index]
+    index += 1
+    itr = itr.next
+    itr.next = nodeDict[count-1]
     count -= 1
-    index = 1
+    itr = itr.next
 
-    while index < count:
-      itr.next = nodeDict[index]
-      index += 1
-      itr = itr.next
-      itr.next = nodeDict[count-1]
-      count -= 1
-      itr = itr.next
+  itr.next = None
 
-    itr.next = None
+'''
+# 2nd Solution: Two pointers, reverse linked list, merge list
+  https://leetcode.com/problems/reorder-list/solutions/801971/python-o-n-by-two-pointers-w-visualization/?page=2
+'''
